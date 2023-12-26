@@ -1,15 +1,17 @@
+[오후 3:27] JiWon Jung (정지원)
 name: test action
-
+ 
 on:
   workflow_dispatch:
-
+ 
 jobs:
   create-prod-tag:
     name: Create prod tag for latest qa version
     runs-on: ubuntu-latest
     #uses: CheongSong0320/.github/.github/workflows/create-prod-tag.yml@main
-    uses: ./.github/workflows/create-prod-tag.yml
-    with:
-      gitops_repo: https://github.com/CheongSong0320/gitops-test.git
-      gitops_branch: dev
-      version_file_path: "prod_version.yaml"
+    steps:
+    - uses: ./.github/workflows/create-prod-tag.yml
+      with:
+        gitops_repo: https://github.com/CheongSong0320/gitops-test.git
+        gitops_branch: dev
+        version_file_path: "prod_version.yaml"
