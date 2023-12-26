@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     uses: CheongSong0320/.github/.github/workflows/create-prod-tag.yml@main
     with:
-      gitops_repo: https://github.com/CheongSong0320/gitops-test.git
-      gitops_branch: dev
-      version_file_path: prod_version.yaml
+      gitops_repo: "https://github.com/CheongSong0320/gitops-test.git"
+      gitops_branch: "dev"
+      version_file_path: "prod_version.yaml"
