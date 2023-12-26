@@ -31,6 +31,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: ./gitops
           repository: ${{ inputs.gitops_repo }}
           ref: refs/heads/${{ inputs.gitops_branch }}
           token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
@@ -43,9 +44,10 @@ jobs:
           cat /home/runner/work/_temp/*.sh
 
       - name: Update msa prod tag
+        working-directory: ./gitops
         run: |
-          git config --global user.name "csna" 
-          git config --global user.email "<>" 
+          git config user.name "csna" 
+          git config user.email "<>" 
           while IFS= read -r line; do
           if [[ $line == *"service-name"* ]]; then
             service_name=$(echo "$line" | awk '{print $2}')
