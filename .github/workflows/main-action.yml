@@ -17,7 +17,7 @@ jobs:
         ref: main
         token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }    
 
-    - uses: .github/workflows/create-prod-tag.yml
+    - uses: ./.github/workflows/create-prod-tag.yml
       with:
         gitops_repo: https://github.com/CheongSong0320/gitops-test.git
         gitops_branch: dev
