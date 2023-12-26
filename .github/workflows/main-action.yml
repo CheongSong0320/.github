@@ -19,7 +19,7 @@ jobs:
         ls -la .github/workflows
         pwd
 
-    - uses: ./workflows/create-prod-tag.yml
+    - uses: ./.github/workflows/create-prod-tag.yml
       with:
         gitops_repo: https://github.com/CheongSong0320/gitops-test.git
         gitops_branch: dev
