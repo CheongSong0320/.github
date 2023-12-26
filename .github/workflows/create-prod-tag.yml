@@ -48,28 +48,21 @@ jobs:
           if [[ $line == *"service-name"* ]]; then
             service_name=$(echo "$line" | awk '{print $2}')
           elif [[ $line == *"repo-name"* ]]; then
-            repo-name=$(echo "$line" | awk '{print $2}')
+            repo_name=$(echo "$line" | awk '{print $2}')
           elif [[ $line == *"image-tag"* ]]; then
-            version-tag=$(echo "$line" | awk '{print $2}')
+            version_tag=$(echo "$line" | awk '{print $2}')
             echo "Service Name: $service_name"
-            echo "rep url: $repo-name"
-            echo "version tag: $version-tag"
+            echo "rep url: $repo_name"
+            echo "version tag: $version_tag"
+            git clone $repo-url ${service_name}_tag
+            cd ${service_name}_tag
+            pwd
+            git tag -d prod
+            git push --delete origin prod
+            git checkout $version_tag
+            git tag prod
+            git push origin prod
+            cd ..
           fi
-          done < prod_version.yaml
-
-#          while IFS= read -r line; do
-#          if [[ "${line:0:1}" != " " ]]; then
-#            # Extract the value after "service-name:"
-#            service_name=$(echo "$line" | awk -F':' '{print $1}' )
-#          elif [[ $line == *"repo-name"* ]]; then
-#            # Extract the value after "repo-url:"
-#            repo-url=$(echo "$line" | awk '{print $2}')            
-#          elif [[ $line == *"image-tag"* ]]; then
-#            # Extract the value after "image-tag:"
-#            version_tag=$(echo "$line" | awk '{print $2}')
-#            echo "Service Name: $service_name"
-#            echo "rep url: $repo-url"
-#            echo "version tag: $version_tag"
-#          fi
-#          done < ${{ inputs.version_file_path }}
+          done < ${{ inputs.version_file_path }}
 
