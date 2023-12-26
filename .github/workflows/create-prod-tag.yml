@@ -40,6 +40,7 @@ jobs:
           ls -la 
           pwd
           ls -la ${{ inputs.version_file_path }}
+          cat /home/runner/work/_temp/*.sh
 
       - name: Update msa prod tag
         run: |
