@@ -3,7 +3,6 @@ name: test action
 on:
   workflow_dispatch:
 
-
 jobs:
   create-prod-tag:
     name: Create prod tag for latest qa version
@@ -20,7 +19,7 @@ jobs:
           ref: dev
           token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
 
-      - name: Update prod tag
+      - name: Trigger reusable workflow
         uses: CheongSong0320/.github/.github/workflows/create-prod-tag.yml@main
         with:
           gitops_repo: https://github.com/CheongSong0320/gitops-test.git
