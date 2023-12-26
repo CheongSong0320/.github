@@ -1,0 +1,62 @@
+name: Create MSA repo tag
+
+run-name: Create MSA repo tag
+
+on:
+  workflow_call:
+    inputs:
+      gitops_repo:
+        description: 'gitop repo url'
+        required: true
+        default: ""
+        type: string
+      gitops_branch:
+        description: 'gitop repo branch'
+        required: false
+        default: "main"
+        type: string
+      version_file_path:
+        description: 'msa version file path'
+        required: true
+        default: ""
+        type: string     
+
+jobs:          
+  create-prod-jira-release:
+    name: Create prod tag for latest qa version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.gitops_repo }}
+          ref: refs/heads/${{ inputs.gitops_branch }}
+          token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }
+
+      - name: Update msa prod tag
+        run: |
+          while IFS= read -r line; do
+            if [[ "${line:0:1}" != " " ]]; then
+              # Extract the value after "service-name:"
+              service_name=$(echo "$line" | awk -F':' '{print $1}' )
+            elif [[ $line == *"repo-name"* ]]; then
+              # Extract the value after "repo-url:"
+              repo-url=$(echo "$line" | awk '{print $2}')            
+            elif [[ $line == *"image-tag"* ]]; then
+              # Extract the value after "image-tag:"
+              version_tag=$(echo "$line" | awk '{print $2}')
+              echo "Service Name: $service_name"
+              echo "rep url: $repo-url"
+              echo "version tag: $version_tag"
+              git clone $repo-url ${service_name}_tag
+              cd ${service_name}_tag
+              pwd
+              git tag -d prod
+              git push --delete origin prod
+              git checkout $version_tag
+              git tag prod
+              git push origin prod
+              cd ..
+            fi
+          done < prod_version.yaml
