@@ -39,8 +39,6 @@ jobs:
       - name: Update msa prod tag
         working-directory: ./gitops
         run: |
-          git config --global user.name "csna" 
-          git config --global user.email "<>" 
           while IFS= read -r line; do
           if [[ $line == *"service-name"* ]]; then
             service_name=$(echo "$line" | awk '{print $2}')
