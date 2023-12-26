@@ -49,14 +49,14 @@ jobs:
               echo "Service Name: $service_name"
               echo "rep url: $repo-url"
               echo "version tag: $version_tag"
-              git clone $repo-url ${service_name}_tag
-              cd ${service_name}_tag
-              pwd
-              git tag -d prod
-              git push --delete origin prod
-              git checkout $version_tag
-              git tag prod
-              git push origin prod
-              cd ..
+              #git clone $repo-url ${service_name}_tag
+              #cd ${service_name}_tag
+              #pwd
+              #git tag -d prod
+              #git push --delete origin prod
+              #git checkout $version_tag
+              #git tag prod
+              #git push origin prod
+              #scd ..
             fi
           done < ${{ inputs.version_file_path }}
