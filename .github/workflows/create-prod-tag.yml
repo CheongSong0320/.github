@@ -36,13 +36,6 @@ jobs:
           ref: refs/heads/${{ inputs.gitops_branch }}
           token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
 
-      - name: test
-        run: |
-          ls -la 
-          pwd
-          ls -la ${{ inputs.version_file_path }}
-          cat /home/runner/work/_temp/*.sh
-
       - name: Update msa prod tag
         working-directory: ./gitops
         run: |
