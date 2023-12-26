@@ -32,7 +32,6 @@ jobs:
         with:
           fetch-depth: 0
           repository: ${{ inputs.gitops_repo }}
-          ref: ${{ inputs.gitops_branch }}
           token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
 
       - name: Update msa prod tag
