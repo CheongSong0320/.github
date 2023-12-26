@@ -45,18 +45,18 @@ jobs:
       - name: Update msa prod tag
         run: |
           while IFS= read -r line; do
-            if [[ "${line:0:1}" != " " ]]; then
-              # Extract the value after "service-name:"
-              service_name=$(echo "$line" | awk -F':' '{print $1}' )
-            elif [[ $line == *"repo-name"* ]]; then
-              # Extract the value after "repo-url:"
-              repo-url=$(echo "$line" | awk '{print $2}')            
-            elif [[ $line == *"image-tag"* ]]; then
-              # Extract the value after "image-tag:"
-              version_tag=$(echo "$line" | awk '{print $2}')
-              echo "Service Name: $service_name"
-              echo "rep url: $repo-url"
-              echo "version tag: $version_tag"
-            fi
+          if [[ "${line:0:1}" != " " ]]; then
+            # Extract the value after "service-name:"
+            service_name=$(echo "$line" | awk -F':' '{print $1}' )
+          elif [[ $line == *"repo-name"* ]]; then
+            # Extract the value after "repo-url:"
+            repo-url=$(echo "$line" | awk '{print $2}')            
+          elif [[ $line == *"image-tag"* ]]; then
+            # Extract the value after "image-tag:"
+            version_tag=$(echo "$line" | awk '{print $2}')
+            echo "Service Name: $service_name"
+            echo "rep url: $repo-url"
+            echo "version tag: $version_tag"
+          fi
           done < ${{ inputs.version_file_path }}
 
