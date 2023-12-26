@@ -32,7 +32,14 @@ jobs:
         with:
           fetch-depth: 0
           repository: ${{ inputs.gitops_repo }}
+          ref: refs/heads/${{ inputs.gitops_branch }}
           token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
+
+      - name: test
+        run: |
+          ls -la 
+          pwd
+          ls -la ${{ inputs.version_file_path }}
 
       - name: Update msa prod tag
         run: |
