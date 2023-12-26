@@ -57,8 +57,8 @@ jobs:
             git clone https://${{ secrets.GH_MANAGEPACKAGE_TOKEN }}@github.com/${{ inputs.git_org }}/${service_name}.git ${service_name}_tag
             cd ${service_name}_tag
             pwd
-            git tag -d prod
-            git push --delete origin prod
+            git tag -d prod || true
+            git push --delete origin prod || true 
             git checkout $version_tag
             git tag prod
             git push origin prod
