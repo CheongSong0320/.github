@@ -47,13 +47,13 @@ jobs:
           while IFS= read -r line; do
           if [[ $line == *"service-name"* ]]; then
             service_name=$(echo "$line" | awk '{print $2}')
+          elif [[ $line == *"repo-name"* ]]; then
+            repo-name=$(echo "$line" | awk '{print $2}')
           elif [[ $line == *"image-tag"* ]]; then
-            image_tag=$(echo "$line" | awk '{print $2}')
-          elif [[ $line == *"image-repo"* ]]; then
-            image_repo=$(echo "$line" | awk '{print $2}')
+            version-tag=$(echo "$line" | awk '{print $2}')
             echo "Service Name: $service_name"
-            echo "rep url: $image_tag"
-            echo "version tag: $image_repo"
+            echo "rep url: $repo-name"
+            echo "version tag: $version-tag"
           fi
           done < prod_version.yaml
 
