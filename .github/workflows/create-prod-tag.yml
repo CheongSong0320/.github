@@ -3,7 +3,8 @@ name: Create MSA repo tag
 run-name: Create MSA repo tag
 
 on:
-  workflow_call:
+  #workflow_call:
+  workflow_dispatch:
     inputs:
       gitops_repo:
         description: 'gitop repo url'
