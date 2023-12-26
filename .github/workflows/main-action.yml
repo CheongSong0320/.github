@@ -14,7 +14,6 @@ jobs:
       with:
         fetch-depth: 0
         repository: https://github.com/CheongSong0320/.github.git
-        ref: refs/heads/main
         token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
 
     - uses: ./.github/workflows/create-prod-tag.yml
