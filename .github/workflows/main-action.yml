@@ -12,6 +12,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: test
+      run: |
+        ls -la
+        ls -la .github
+        ls -la .github/workflows
+
     - uses: ./.github/workflows/create-prod-tag.yml
       with:
         gitops_repo: https://github.com/CheongSong0320/gitops-test.git
