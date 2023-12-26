@@ -44,7 +44,7 @@ jobs:
 
       - name: Update msa prod tag
         run: |
-          git config --global user.name "GitHub Actions Bot" 
+          git config --global user.name "csna" 
           git config --global user.email "<>" 
           while IFS= read -r line; do
           if [[ $line == *"service-name"* ]]; then
