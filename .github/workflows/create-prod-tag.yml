@@ -59,4 +59,4 @@ jobs:
               git push origin prod
               cd ..
             fi
-          done < prod_version.yaml
+          done < ${{ inputs.version_file_path }}
