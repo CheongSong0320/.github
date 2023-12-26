@@ -14,8 +14,9 @@ jobs:
         ls -la
         ls -la .github
         ls -la .github/workflows
-    - uses: .github/workflows/create-prod-tag.yml
-      with:
-        gitops_repo: https://github.com/CheongSong0320/gitops-test.git
-        gitops_branch: dev
-        version_file_path: "prod_version.yaml"
+
+#    - uses: .github/workflows/create-prod-tag.yml
+#      with:
+#        gitops_repo: https://github.com/CheongSong0320/gitops-test.git
+#        gitops_branch: dev
+#        version_file_path: "prod_version.yaml"
