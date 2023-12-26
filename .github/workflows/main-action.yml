@@ -11,10 +11,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        repository: https://github.com/CheongSong0320/.github.git
-        token: ${{ secrets.GH_MANAGEPACKAGE_TOKEN }}
 
     - uses: ./.github/workflows/create-prod-tag.yml
       with:
