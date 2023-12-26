@@ -11,6 +11,9 @@ jobs:
     name: Create prod tag for latest qa version
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
       - name: Checkout state repo
         uses: actions/checkout@v3
         with:
